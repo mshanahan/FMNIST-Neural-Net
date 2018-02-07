@@ -7,7 +7,7 @@ import os
 
 #code to set flags by Paul Quint
 flags = tf.app.flags
-flags.DEFINE_string('data_dir', '/work/cse496dl/shared/homework/01', 'directory where MNIST is located')
+flags.DEFINE_string('data_dir', '/work/cse496dl/shared/homework/01/', 'directory where MNIST is located')
 flags.DEFINE_string('save_dir', 'homework_1', 'directory where model graph and weights are saved')
 flags.DEFINE_integer('batch_size', 32, '')
 flags.DEFINE_integer('max_epoch_num', 100, '')
