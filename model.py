@@ -12,23 +12,20 @@ def my_model(layer_counts):
       activation = tf.nn.relu,
       bias_regularizer = tf.contrib.layers.l2_regularizer(1),
       kernel_regularizer = tf.contrib.layers.l2_regularizer(1),
-      name = 'hidden_1'
-      )
+      name = 'hidden_1')
       
     hidden_2 = tf.layers.Dense(
       layer_counts[1],
       activation = tf.nn.relu,
       bias_regularizer = tf.contrib.layers.l2_regularizer(1),
       kernel_regularizer = tf.contrib.layers.l2_regularizer(1),
-      name = 'hidden_1'
-      )
+      name = 'hidden_2')
       
     output = tf.layers.Dense(
       10,
       activation = tf.nn.relu,
       bias_regularizer = tf.contrib.layers.l2_regularizer(1),
       kernel_regularizer = tf.contrib.layers.l2_regularizer(1),
-      name = 'output'
-      )
+      name = 'output')
       
     return hidden_1,hidden_2,output
