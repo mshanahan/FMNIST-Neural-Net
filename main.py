@@ -22,6 +22,11 @@ def main(argv):
   VALID_PROPORTION = 0.1 #proportion of training data used for validation
   valid_data, train_data, valid_labels, train_labels = util.split_data(fmnist_data, fmnist_labels, VALID_PROPORTION)
 
+  print(valid_data)
+  print(train_data)
+  print(valid_labels)
+  print(train_labels)
+  
   #count data
   valid_count = valid_data.shape[0]
   train_count = train_data.shape[0]
@@ -29,11 +34,6 @@ def main(argv):
   #specify model
   input_placeholder = tf.placeholder(tf.float32, [None,784], name='input_placeholder')
   my_network = model.my_model([64,64], input_placeholder)
-#  my_network = tf.identity(
-#    output(
-#      hidden_2
-#        (hidden_1(
-#          input_placeholder))))
 
   #define classification loss
   #code adapted from Paul Quint's hackathon 3
