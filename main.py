@@ -28,12 +28,12 @@ def main(argv):
 
   #specify model
   input_placeholder = tf.placeholder(tf.float32, [None,784], name='input_placeholder')
-  hidden_1, hidden_2, output = model.my_model([64,64])
-  my_network = tf.identity(
-    output(
-      hidden_2
-        (hidden_1(
-          input_placeholder))))
+  my_network = model.my_model([64,64], input_placeholder)
+#  my_network = tf.identity(
+#    output(
+#      hidden_2
+#        (hidden_1(
+#          input_placeholder))))
 
   #define classification loss
   #code adapted from Paul Quint's hackathon 3
