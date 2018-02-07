@@ -14,9 +14,9 @@ def my_model(layer_counts, inputs):
       layer_counts[0],
       activation = tf.nn.relu,
       bias_regularizer = tf.contrib.layers.l2_regularizer(1.0),
-	  bias_initializer=tf.zeros_initializer(),
+      bias_initializer=tf.zeros_initializer(),
       kernel_regularizer = tf.contrib.layers.l2_regularizer(1.0),
-	  kernel_initializer=None,
+      kernel_initializer=None,
       name = 'hidden_1')
       
     hidden_2 = tf.layers.dense(
@@ -24,17 +24,17 @@ def my_model(layer_counts, inputs):
       layer_counts[1],
       activation = tf.nn.relu,
       bias_regularizer = tf.contrib.layers.l2_regularizer(1.0),
-	  bias_initializer=tf.zeros_initializer(),
+      bias_initializer=tf.zeros_initializer(),
       kernel_regularizer = tf.contrib.layers.l2_regularizer(1.0),
-	  kernel_initializer=None,
+      kernel_initializer=None,
       name = 'hidden_2')
       
     output = tf.layers.dense(
       hidden_2,
       10,
       activation = tf.nn.relu,
-	  bias_initializer=tf.zeros_initializer(),
-	  kernel_initializer=None,
+      bias_initializer=tf.zeros_initializer(),
+      kernel_initializer=None,
       name = 'output')
       
     return output
