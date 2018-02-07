@@ -91,7 +91,7 @@ def main(argv):
         ce_vals.append(train_ce)
       avg_train_ce = sum(ce_vals) / len(ce_vals)
       print('TRAIN CROSS ENTROPY: ' + str(avg_train_ce))
-    saver.save(session, "/home/cse496dl/mshanaha/homework_1/homework_1")
+    saver.save(session, "/home/cse496dl/mshanaha/homework_1/homework_1-0")
 
 if __name__ == "__main__":
     tf.app.run()
