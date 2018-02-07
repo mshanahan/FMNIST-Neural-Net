@@ -23,7 +23,7 @@ def main(argv):
   new_labels = np.empty(label_shape)
   idx = 0
   for i in fmnist_labels:
-    new_labels[idx:idx,i:i] = 1
+    new_labels[int(idx),int(i)] = 1
     idx += 1
     
   #split data
