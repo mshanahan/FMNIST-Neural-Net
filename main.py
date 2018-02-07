@@ -62,32 +62,32 @@ def main(argv):
   with tf.Session() as session:
     session.run(tf.global_variables_initializer())
     batch_size = FLAGS.batch_size
-      for epoch in range(FLAGS.max_epoch_num):
-        print('Epoch: ' + str(epoch))
-        
-        # run gradient steps and report mean loss on train data
-        ce_vals = []
-        conf_mxs = []
-        for i in range(valid_count // batch_size):
-          batch_data = valid_data[i*batch_size:(i+1)*batch_size, :]
-          batch_labels = valid_labels[i*batch_size:(i+1)*batch_size, :]
-          valid_ce, conf_matrix = session.run([sum_cross_entropy, confusion_matrix_op], {x: batch_data, y: batch_labels})
-          ce_vals.append(valid_ce)
-          conf_mxs.append(conf_matrix)
-        avg_valid_ce = sum(ce_vals) / len(ce_vals)
-        print('VALID CROSS ENTROPY: ' + str(avg_train_ce))
-        print('VALIDATION CONFUSION MATRIX:')
-        print(str(sum(conf_mxs)))
-        
-        ce_vals = []
-        for i in range(train_count // batch_size):
-          batch_data = train_data[i*batch_size:(i+1)*batch_size, :]
-          batch_labels = train_labels[i*batch_size:(i+1)*batch_size, :]
-          _, train_ce = session.run([train_op, sum_cross_entropy], {x: batch_data, y: batch_labels})
-          ce_vals.append(train_ce)
-        avg_train_ce = sum(ce_vals) / len(ce_vals)
-        print('TRAIN CROSS ENTROPY: ' + str(avg_train_ce))
+    for epoch in range(FLAGS.max_epoch_num):
+      print('Epoch: ' + str(epoch))
+      
+      # run gradient steps and report mean loss on train data
+      ce_vals = []
+      conf_mxs = []
+      for i in range(valid_count // batch_size):
+        batch_data = valid_data[i*batch_size:(i+1)*batch_size, :]
+        batch_labels = valid_labels[i*batch_size:(i+1)*batch_size, :]
+        valid_ce, conf_matrix = session.run([sum_cross_entropy, confusion_matrix_op], {x: batch_data, y: batch_labels})
+        ce_vals.append(valid_ce)
+        conf_mxs.append(conf_matrix)
+      avg_valid_ce = sum(ce_vals) / len(ce_vals)
+      print('VALID CROSS ENTROPY: ' + str(avg_train_ce))
+      print('VALIDATION CONFUSION MATRIX:')
+      print(str(sum(conf_mxs)))
+      
+      ce_vals = []
+      for i in range(train_count // batch_size):
+        batch_data = train_data[i*batch_size:(i+1)*batch_size, :]
+        batch_labels = train_labels[i*batch_size:(i+1)*batch_size, :]
+        _, train_ce = session.run([train_op, sum_cross_entropy], {x: batch_data, y: batch_labels})
+        ce_vals.append(train_ce)
+      avg_train_ce = sum(ce_vals) / len(ce_vals)
+      print('TRAIN CROSS ENTROPY: ' + str(avg_train_ce))
     saver.save(session, "homework_1")
-        
+
 if __name__ == "__main__":
     tf.app.run()
