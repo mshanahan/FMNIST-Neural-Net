@@ -1,4 +1,6 @@
 #author: Michael Shanahan 42839964
+import tensorflow as tf
+import numpy as np
 
 #split the data and labels
 def split_data(data, labels, proportion):

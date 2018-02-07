@@ -1,5 +1,8 @@
 #author: Michael Shanahan 42839964
 import util
+import tensorflow as tf
+import numpy as np
+
 def my_model(layer_counts):
   #layer_counts: a 4d array of integers
   #[0]: hidden 1 size, [1]: hidden 2 size
