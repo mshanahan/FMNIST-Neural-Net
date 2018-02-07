@@ -31,5 +31,4 @@ def my_model(layer_counts, inputs):
       kernel_regularizer = tf.contrib.layers.l2_regularizer(1.0),
       name = 'output')
       
-#    return hidden_1,hidden_2,output
     return output

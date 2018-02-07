@@ -36,8 +36,8 @@ def main(argv):
   print(train_labels.shape)
 #  print(valid_data)
 #  print(train_data)
-  print(valid_labels)
-  print(train_labels)
+  print(valid_labels[-20:])
+  print(train_labels[-20:])
   
   #count data
   valid_count = valid_data.shape[0]
