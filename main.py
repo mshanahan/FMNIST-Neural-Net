@@ -39,7 +39,7 @@ def main(argv):
   #code adapted from Paul Quint's hackathon 3
   labels = tf.placeholder(tf.float32, [None, 10], name='labels')
   cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=labels, logits=my_network)
-  confusion_matrix_op = tf.confusion_matrix(tf.argmax(y, axis=1), tf.argmax(output, axis=1), num_classes=10)
+  confusion_matrix_op = tf.confusion_matrix(tf.argmax(labels, axis=1), tf.argmax(my_network, axis=1), num_classes=10)
   REG_COEF = 0.0001
   regularization_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
   total_loss = cross_entropy + REG_COEFF * sum(regularization_losses)
