@@ -29,16 +29,6 @@ def main(argv):
   #split data
   VALID_PROPORTION = 0.1 #proportion of training data used for validation
   valid_data, train_data, valid_labels, train_labels = util.split_data(fmnist_data, new_labels, VALID_PROPORTION)
-
-  print(valid_data.shape)
-  print(train_data.shape)
-  print(valid_labels.shape)
-  print(train_labels.shape)
-#  print(valid_data)
-#  print(train_data)
-  print(new_labels[-20:])
-  print(valid_labels[-20:])
-  print(train_labels[-20:])
   
   #count data
   valid_count = valid_data.shape[0]
@@ -84,7 +74,7 @@ def main(argv):
       for i in range(valid_count // batch_size):
         batch_data = valid_data[i*batch_size:(i+1)*batch_size, :]
         batch_labels = valid_labels[i*batch_size:(i+1)*batch_size, :]
-        valid_ce, conf_matrix = session.run([sum_cross_entropy, confusion_matrix_op], {x: batch_data, y: batch_labels})
+        valid_ce, conf_matrix = session.run([sum_cross_entropy, confusion_matrix_op], {input_placeholder: batch_data, labels: batch_labels})
         ce_vals.append(valid_ce)
         conf_mxs.append(conf_matrix)
       avg_valid_ce = sum(ce_vals) / len(ce_vals)
@@ -96,7 +86,7 @@ def main(argv):
       for i in range(train_count // batch_size):
         batch_data = train_data[i*batch_size:(i+1)*batch_size, :]
         batch_labels = train_labels[i*batch_size:(i+1)*batch_size, :]
-        _, train_ce = session.run([train_op, sum_cross_entropy], {x: batch_data, y: batch_labels})
+        _, train_ce = session.run([train_op, sum_cross_entropy], {input_placeholder: batch_data, labels: batch_labels})
         ce_vals.append(train_ce)
       avg_train_ce = sum(ce_vals) / len(ce_vals)
       print('TRAIN CROSS ENTROPY: ' + str(avg_train_ce))
