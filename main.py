@@ -20,7 +20,7 @@ def main(argv):
   
   #transform mnist labels from a list of labels to a matrix of labels
   label_shape = ( len(fmnist_labels), 10 ) #n rows, 10 columns
-  new_labels = np.empty(label_shape)
+  new_labels = np.zeros(label_shape)
   idx = 0
   for i in fmnist_labels:
     new_labels[int(idx),int(i)] = 1
