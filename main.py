@@ -59,6 +59,7 @@ def main(argv):
   best_train_ce = 0
   best_train_ce = 0
   best_validation_ce = 5000
+  epochs_since_best = 0
   
   #run the actual training
   #code adapted from Paul Quint's hackathon 3
@@ -90,7 +91,7 @@ def main(argv):
         ce_vals.append(train_ce)
       avg_train_ce = sum(ce_vals) / len(ce_vals)
       print('TRAIN CROSS ENTROPY: ' + str(avg_train_ce))
-    saver.save(session, "homework_1")
+    saver.save(session, "/home/cse496dl/mshanaha/homework_1/homework_1")
 
 if __name__ == "__main__":
     tf.app.run()
