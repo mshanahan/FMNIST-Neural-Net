@@ -17,10 +17,18 @@ def main(argv):
   #load data
   fmnist_data = np.load(FLAGS.data_dir + 'fmnist_train_data.npy')
   fmnist_labels = np.load(FLAGS.data_dir + 'fmnist_train_labels.npy')
-
+  
+  #transform mnist labels from a list of labels to a matrix of labels
+  label_shape = ( len(fmnist_labels), 10 ) #n rows, 10 columns
+  new_labels = np.empty(label_shape)
+  idx = 0
+  for i in fmnist_labels:
+    label_shape[idx,i] = 1
+    idx += 1
+    
   #split data
   VALID_PROPORTION = 0.1 #proportion of training data used for validation
-  valid_data, train_data, valid_labels, train_labels = util.split_data(fmnist_data, fmnist_labels, VALID_PROPORTION)
+  valid_data, train_data, valid_labels, train_labels = util.split_data(fmnist_data, new_labels, VALID_PROPORTION)
 
   print(valid_data)
   print(train_data)
