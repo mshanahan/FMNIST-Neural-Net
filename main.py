@@ -30,8 +30,12 @@ def main(argv):
   VALID_PROPORTION = 0.1 #proportion of training data used for validation
   valid_data, train_data, valid_labels, train_labels = util.split_data(fmnist_data, new_labels, VALID_PROPORTION)
 
-  print(valid_data)
-  print(train_data)
+  print(valid_data.shape)
+  print(train_data.shape)
+  print(valid_labels.shape)
+  print(train_labels.shape)
+#  print(valid_data)
+#  print(train_data)
   print(valid_labels)
   print(train_labels)
   
