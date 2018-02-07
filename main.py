@@ -36,6 +36,7 @@ def main(argv):
   print(train_labels.shape)
 #  print(valid_data)
 #  print(train_data)
+  print(new_labels[-20:])
   print(valid_labels[-20:])
   print(train_labels[-20:])
   
