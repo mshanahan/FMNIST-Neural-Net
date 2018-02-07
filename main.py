@@ -78,7 +78,7 @@ def main(argv):
         ce_vals.append(valid_ce)
         conf_mxs.append(conf_matrix)
       avg_valid_ce = sum(ce_vals) / len(ce_vals)
-      print('VALID CROSS ENTROPY: ' + str(avg_train_ce))
+      print('VALID CROSS ENTROPY: ' + str(avg_valid_ce))
       print('VALIDATION CONFUSION MATRIX:')
       print(str(sum(conf_mxs)))
       
