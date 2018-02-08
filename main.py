@@ -74,7 +74,7 @@ def main(argv):
     session.run(tf.global_variables_initializer())
     batch_size = FLAGS.batch_size
     for epoch in range(FLAGS.max_epoch_num):
-      print('Epoch: ' + str(epoch))
+      print("\n#################### EPOCH " + str(epoch) + " ####################\n")
       
       # run gradient steps and report mean loss on train data
       ce_vals = []
@@ -102,15 +102,25 @@ def main(argv):
       avg_train_ce = sum(ce_vals) / len(ce_vals)
       print('TRAIN CROSS ENTROPY: ' + str(avg_train_ce))
       
-      if(avg_valid_ce < best_valid_ce):
+      epochs_since_best += 1
+      
+      if(avg_valid_ce < best_valid_ce): #tracking best
         best_valid_ce = avg_valid_ce
         best_train_ce = avg_train_ce
         best_epoch = epoch
+        epochs_since_best = 0
+        saver.save(session, "/work/cse496dl/mshanaha/homework_1/homework_1-0")
+        print("BEST FOUND")
+        
+      if(epochs_since_best >= 12): #early stopping
+        print("EARLY STOP")
+        break
+        
+      print("\n##################################################\n")
       
     print(str(best_valid_ce))
     print(str(best_train_ce))
     print(str(best_epoch))
-    saver.save(session, "/home/cse496dl/mshanaha/homework_1/homework_1-0")
 
 if __name__ == "__main__":
     tf.app.run()
