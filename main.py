@@ -90,7 +90,7 @@ def main(argv):
       print('VALID CROSS ENTROPY: ' + str(avg_valid_ce))
       print('VALIDATION CONFUSION MATRIX:')
       print(str(sum(conf_mxs)))
-      print('VALIDATION CLASSIFICATION RATE:' + str(util.classification_rate(sum(conf_mxs)),10))
+      print('VALIDATION CLASSIFICATION RATE:' + str(util.classification_rate(sum(conf_mxs),10)))
       
       ce_vals = []
       for i in range(train_count // batch_size):
