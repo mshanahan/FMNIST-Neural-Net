@@ -25,9 +25,6 @@ def main(argv):
   valid_count = valid_data.shape[0]
   train_count = train_data.shape[0]
 
-  print(str(valid_count))
-  print(str(train_count))
-
   #specify model
   input_placeholder = tf.placeholder(tf.float32, [None,784], name='input_placeholder')
   my_network = model.my_model([64,64,64], input_placeholder)
@@ -37,7 +34,7 @@ def main(argv):
   labels = tf.placeholder(tf.float32, [None, 10], name='labels')
   cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=labels, logits=my_network)
   confusion_matrix_op = tf.confusion_matrix(tf.argmax(labels, axis=1), tf.argmax(my_network, axis=1), num_classes=10)
-  REG_COEFF = 0.001
+  REG_COEFF = 0.0001
   regularization_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
   total_loss = cross_entropy + REG_COEFF * sum(regularization_losses)
 
