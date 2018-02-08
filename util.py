@@ -21,7 +21,7 @@ def white_hot(labels):
   return new_labels
 #given a confusion matrix and a dimensionality, calculates the proportion of correct answers
 def classification_rate(conf_matrix,dim):
-  sum_entries = sum(sum(conf_matrix)
+  sum_entries = sum(sum(conf_matrix))
   sum_correct = 0
   for i in range(0,dim):
     sum_correct += conf_matrix[i,i]
