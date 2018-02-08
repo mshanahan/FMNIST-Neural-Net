@@ -13,5 +13,5 @@ def split_data(data, labels, proportion):
 def white_hot(labels):
   shape = label_shape = ( len(labels), 10 ) #n rows, 10 columns
   new_array = np.zeros(label_shape)
-  new_array[np.arrange(len(labels)),labels] = 1
+  new_array[np.arange(len(labels)),labels] = 1
   return new_array
