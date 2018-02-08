@@ -94,7 +94,7 @@ def main(argv):
       ce_vals = []
       for i in range(train_count // batch_size):
         batch_data = train_data[i*batch_size:(i+1)*batch_size, :]
-        batch_labels = train_labels[i*batch_size:(i+1)*batch_size, :]
+        batch_labels = train_labels[i*batch_size:(i+1)*batch_size]
         batch_labels = util.white_hot(batch_labels)
         _, train_ce = session.run([train_op, sum_cross_entropy], {input_placeholder: batch_data, labels: batch_labels})
         ce_vals.append(train_ce)
