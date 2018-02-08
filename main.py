@@ -64,8 +64,9 @@ def main(argv):
   sum_cross_entropy = tf.reduce_mean(cross_entropy)
   
   best_epoch = 0
-  best_valid_ce = 5000
+  best_valid_ce = 0
   best_train_ce = 0
+  best_classification_rate = 0
   epochs_since_best = 0
   
   #run the actual training
@@ -74,7 +75,8 @@ def main(argv):
     session.run(tf.global_variables_initializer())
     batch_size = FLAGS.batch_size
     for epoch in range(FLAGS.max_epoch_num):
-      print("\n#################### EPOCH " + str(epoch) + " ####################\n")
+      print("################### EPOCH " + str(epoch) + " #####################")
+      print("##################################################\n")
       
       # run gradient steps and report mean loss on train data
       ce_vals = []
@@ -90,7 +92,8 @@ def main(argv):
       print('VALID CROSS ENTROPY: ' + str(avg_valid_ce))
       print('VALIDATION CONFUSION MATRIX:')
       print(str(sum(conf_mxs)))
-      print('VALIDATION CLASSIFICATION RATE:' + str(util.classification_rate(sum(conf_mxs),10)))
+      classification_rate = util.classification_rate(sum(conf_mxs),10)
+      print('VALIDATION CLASSIFICATION RATE:' + str(classification_rate))
       
       ce_vals = []
       for i in range(train_count // batch_size):
@@ -104,10 +107,11 @@ def main(argv):
       
       epochs_since_best += 1
       
-      if(avg_valid_ce < best_valid_ce): #tracking best
+      if(best_classification_rate < classification_rate): #tracking best
         best_valid_ce = avg_valid_ce
         best_train_ce = avg_train_ce
         best_epoch = epoch
+        best_classification_rate = classification_rate
         epochs_since_best = 0
         saver.save(session, "/work/cse496dl/mshanaha/homework_1/homework_1-0")
         print("BEST FOUND")
@@ -116,7 +120,7 @@ def main(argv):
         print("EARLY STOP")
         break
         
-      print("\n##################################################\n")
+      print("\n##################################################")
       
     print(str(best_valid_ce))
     print(str(best_train_ce))
