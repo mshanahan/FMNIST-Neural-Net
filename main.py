@@ -3,7 +3,6 @@ import model
 import util
 import tensorflow as tf
 import numpy as np
-import os
 
 #code to set flags by Paul Quint
 flags = tf.app.flags
@@ -17,26 +16,10 @@ def main(argv):
   #load data
   fmnist_data = np.load(FLAGS.data_dir + 'fmnist_train_data.npy')
   fmnist_labels = np.load(FLAGS.data_dir + 'fmnist_train_labels.npy')
-  
-  #transform mnist labels from a list of labels to a matrix of labels
-#  label_shape = ( len(fmnist_labels), 10 ) #n rows, 10 columns
-#  new_labels = np.zeros(label_shape)
-#  idx = 0
-#  for i in fmnist_labels:
-#    new_labels[int(idx),int(i)] = 1
-#    idx += 1
-  
-#  print("NEW LABELS")
-#  print(new_labels[-200:])
-    
+
   #split data
   VALID_PROPORTION = 0.1 #proportion of training data used for validation
   valid_data, train_data, valid_labels, train_labels = util.split_data(fmnist_data, fmnist_labels, VALID_PROPORTION)
-  
-  print("VALID LABELS")
-  print(valid_labels[-200:])
-  print("TRAIN LABELS")
-  print(train_labels[-200:])
   
   #count data
   valid_count = valid_data.shape[0]
@@ -44,7 +27,7 @@ def main(argv):
 
   #specify model
   input_placeholder = tf.placeholder(tf.float32, [None,784], name='input_placeholder')
-  my_network = model.my_model([1024,512], input_placeholder)
+  my_network = model.my_model([512,256], input_placeholder)
 
   #define classification loss
   #code adapted from Paul Quint's hackathon 3
