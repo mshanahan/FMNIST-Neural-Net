@@ -27,7 +27,7 @@ def main(argv):
 
   #specify model
   input_placeholder = tf.placeholder(tf.float32, [None,784], name='input_placeholder')
-  my_network = model.my_model([512,256], input_placeholder)
+  my_network = model.my_model([256,128], input_placeholder)
 
   #define classification loss
   #code adapted from Paul Quint's hackathon 3
