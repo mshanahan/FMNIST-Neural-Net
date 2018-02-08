@@ -81,7 +81,7 @@ def main(argv):
       conf_mxs = []
       for i in range(valid_count // batch_size):
         batch_data = valid_data[i*batch_size:(i+1)*batch_size, :]
-        batch_labels = valid_labels[i*batch_size:(i+1)*batch_size, :]
+        batch_labels = valid_labels[i*batch_size:(i+1)*batch_size]
         batch_labels = util.white_hot(batch_labels)
         valid_ce, conf_matrix = session.run([sum_cross_entropy, confusion_matrix_op], {input_placeholder: batch_data, labels: batch_labels})
         ce_vals.append(valid_ce)
