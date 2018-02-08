@@ -19,12 +19,12 @@ def main(argv):
   fmnist_labels = np.load(FLAGS.data_dir + 'fmnist_train_labels.npy')
   
   #transform mnist labels from a list of labels to a matrix of labels
-  label_shape = ( len(fmnist_labels), 10 ) #n rows, 10 columns
-  new_labels = np.zeros(label_shape)
-  idx = 0
-  for i in fmnist_labels:
-    new_labels[int(idx),int(i)] = 1
-    idx += 1
+#  label_shape = ( len(fmnist_labels), 10 ) #n rows, 10 columns
+#  new_labels = np.zeros(label_shape)
+#  idx = 0
+#  for i in fmnist_labels:
+#    new_labels[int(idx),int(i)] = 1
+#    idx += 1
   
 #  print("NEW LABELS")
 #  print(new_labels[-200:])
@@ -82,6 +82,7 @@ def main(argv):
       for i in range(valid_count // batch_size):
         batch_data = valid_data[i*batch_size:(i+1)*batch_size, :]
         batch_labels = valid_labels[i*batch_size:(i+1)*batch_size, :]
+        batch_labels = util.white_hot(batch_labels)
         valid_ce, conf_matrix = session.run([sum_cross_entropy, confusion_matrix_op], {input_placeholder: batch_data, labels: batch_labels})
         ce_vals.append(valid_ce)
         conf_mxs.append(conf_matrix)
@@ -94,12 +95,13 @@ def main(argv):
       for i in range(train_count // batch_size):
         batch_data = train_data[i*batch_size:(i+1)*batch_size, :]
         batch_labels = train_labels[i*batch_size:(i+1)*batch_size, :]
+        batch_labels = util.white_hot(batch_labels)
         _, train_ce = session.run([train_op, sum_cross_entropy], {input_placeholder: batch_data, labels: batch_labels})
         ce_vals.append(train_ce)
       avg_train_ce = sum(ce_vals) / len(ce_vals)
       print('TRAIN CROSS ENTROPY: ' + str(avg_train_ce))
       
-      if(avg_valid_ce > best_valid_ce):
+      if(avg_valid_ce < best_valid_ce):
         best_valid_ce = avg_valid_ce
         best_train_ce = avg_train_ce
         best_epoch = epoch
