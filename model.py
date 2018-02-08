@@ -26,9 +26,18 @@ def my_model(layer_counts, inputs):
       bias_initializer=tf.contrib.layers.xavier_initializer(uniform=True, seed=None, dtype=tf.float32),
       kernel_regularizer = tf.contrib.layers.l2_regularizer(1.0),
       name = 'hidden_2')
+
+    hidden_3 = tf.layers.dense(
+      hidden_2,
+      layer_counts[2],
+      activation = tf.nn.relu,
+      bias_regularizer = tf.contrib.layers.l2_regularizer(1.0),
+      bias_initializer=tf.contrib.layers.xavier_initializer(uniform=True, seed=None, dtype=tf.float32),
+      kernel_regularizer = tf.contrib.layers.l2_regularizer(1.0),
+      name = 'hidden_3')
       
     output = tf.layers.dense(
-      hidden_2,
+      hidden_3,
       10,
       activation = tf.nn.relu,
       bias_initializer=tf.contrib.layers.xavier_initializer(uniform=True, seed=None, dtype=tf.float32),
