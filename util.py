@@ -11,7 +11,14 @@ def split_data(data, labels, proportion):
     split_idx = int(proportion * size)
     return data[s[:split_idx]], data[s[split_idx:]], labels[s[:split_idx]], labels[s[split_idx:]]
 def white_hot(labels):
-  shape = label_shape = ( len(labels), 10 ) #n rows, 10 columns
-  new_array = np.zeros(label_shape)
-  new_array[np.arange(len(labels)),labels] = 1
-  return new_array
+  new_labels = np.zeros(label_shape)
+  idx = 0
+  for i in labels:
+    new_labels[int(idx),int(i)] = 1
+    idx += 1
+  return new_labels
+#  shape = label_shape = ( len(labels), 10 ) #n rows, 10 columns
+#  label_shape = ( len(fmnist_labels), 10 ) #n rows, 10 columns
+#  new_array = np.zeros(label_shape)
+#  new_array[np.arange(len(labels)),labels] = 1
+#  return new_array
