@@ -14,7 +14,6 @@ def my_model(layer_counts, inputs):
       layer_counts[0],
       activation = tf.nn.relu,
       bias_regularizer = tf.contrib.layers.l2_regularizer(1.0),
-      bias_initializer=tf.contrib.layers.xavier_initializer(uniform=True, seed=None, dtype=tf.float32),
       kernel_regularizer = tf.contrib.layers.l2_regularizer(1.0),
       name = 'hidden_1')
       
@@ -23,7 +22,6 @@ def my_model(layer_counts, inputs):
       layer_counts[1],
       activation = tf.nn.relu,
       bias_regularizer = tf.contrib.layers.l2_regularizer(1.0),
-      bias_initializer=tf.contrib.layers.xavier_initializer(uniform=True, seed=None, dtype=tf.float32),
       kernel_regularizer = tf.contrib.layers.l2_regularizer(1.0),
       name = 'hidden_2')
 
@@ -32,7 +30,6 @@ def my_model(layer_counts, inputs):
       layer_counts[2],
       activation = tf.nn.relu,
       bias_regularizer = tf.contrib.layers.l2_regularizer(1.0),
-      bias_initializer=tf.contrib.layers.xavier_initializer(uniform=True, seed=None, dtype=tf.float32),
       kernel_regularizer = tf.contrib.layers.l2_regularizer(1.0),
       name = 'hidden_3')
       
@@ -40,7 +37,6 @@ def my_model(layer_counts, inputs):
       hidden_3,
       10,
       activation = tf.nn.relu,
-      bias_initializer=tf.contrib.layers.xavier_initializer(uniform=True, seed=None, dtype=tf.float32),
       name = 'output')
       
     return output
