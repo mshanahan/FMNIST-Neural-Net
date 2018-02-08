@@ -7,7 +7,7 @@ def my_model(layer_counts, inputs):
   #layer_counts: a 4d array of integers
   #[0]: hidden 1 size, [1]: hidden 2 size
   with tf.name_scope('my_model') as scope:
-    divided_input = inputs / 255
+    divided_inputs = inputs / 255
   
     hidden_1 = tf.layers.dense(
       divided_inputs,
