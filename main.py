@@ -25,10 +25,18 @@ def main(argv):
   for i in fmnist_labels:
     new_labels[int(idx),int(i)] = 1
     idx += 1
+  
+  print("NEW LABELS")
+  print(new_labels[-200:])
     
   #split data
   VALID_PROPORTION = 0.1 #proportion of training data used for validation
   valid_data, train_data, valid_labels, train_labels = util.split_data(fmnist_data, new_labels, VALID_PROPORTION)
+  
+  print("VALID LABELS")
+  print(valid_labels[-200:])
+  print("TRAIN LABELS")
+  print(train_labels[-200:])
   
   #count data
   valid_count = valid_data.shape[0]
