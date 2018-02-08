@@ -25,6 +25,9 @@ def main(argv):
   valid_count = valid_data.shape[0]
   train_count = train_data.shape[0]
 
+  print(str(valid_count))
+  print(str(train_count))
+
   #specify model
   input_placeholder = tf.placeholder(tf.float32, [None,784], name='input_placeholder')
   my_network = model.my_model([64,64,64], input_placeholder)
