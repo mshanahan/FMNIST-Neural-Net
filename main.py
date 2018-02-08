@@ -26,8 +26,8 @@ def main(argv):
     new_labels[int(idx),int(i)] = 1
     idx += 1
   
-  print("NEW LABELS")
-  print(new_labels[-200:])
+#  print("NEW LABELS")
+#  print(new_labels[-200:])
     
   #split data
   VALID_PROPORTION = 0.1 #proportion of training data used for validation
@@ -64,9 +64,8 @@ def main(argv):
   sum_cross_entropy = tf.reduce_mean(cross_entropy)
   
   best_epoch = 0
+  best_valid_ce = 5000
   best_train_ce = 0
-  best_train_ce = 0
-  best_validation_ce = 5000
   epochs_since_best = 0
   
   #run the actual training
@@ -99,6 +98,15 @@ def main(argv):
         ce_vals.append(train_ce)
       avg_train_ce = sum(ce_vals) / len(ce_vals)
       print('TRAIN CROSS ENTROPY: ' + str(avg_train_ce))
+      
+      if(avg_valid_ce > best_valid_ce):
+        best_valid_ce = avg_valid_ce
+        best_train_ce = avg_train_ce
+        best_epoch = epoch
+      
+    print(str(best_valid_ce))
+    print(str(best_train_ce))
+    print(str(best_epoch))
     saver.save(session, "/home/cse496dl/mshanaha/homework_1/homework_1-0")
 
 if __name__ == "__main__":
