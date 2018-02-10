@@ -31,7 +31,7 @@ def main(argv):
   my_network = tf.layers.dense(
     linear_layer,
     10,
-    kernel_initializer = initializer,
+    kernel_initializer = tf.contrib.layers.xavier_initializer(),
     name = 'output')
 
   #define classification loss

@@ -42,6 +42,4 @@ def my_model(layer_counts, inputs):
     hidden_3,
     0.75)
     
-
-
   return dropout
