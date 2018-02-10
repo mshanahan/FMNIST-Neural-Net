@@ -9,7 +9,7 @@ def my_model(layer_counts, inputs):
 
   #layer_counts: a 4d array of integers
   #[0]: hidden 1 size, [1]: hidden 2 size
-  divided_inputs = inputs / 255
+  divided_inputs = inputs / 255.0
 
   hidden_1 = tf.layers.dense(
     divided_inputs,
@@ -41,7 +41,6 @@ def my_model(layer_counts, inputs):
   output = tf.layers.dense(
     hidden_3,
     10,
-    activation = tf.nn.relu,
     kernel_initializer = initializer,
     name = 'output')
 
