@@ -19,13 +19,9 @@ def my_model(layer_counts, inputs):
     kernel_regularizer = regularizer,
     kernel_initializer = initializer,
     name = 'hidden_1')
-    
-  dropout_1 = tf.nn.dropout(
-    hidden_1,
-    0.90)
 
   hidden_2 = tf.layers.dense(
-    dropout_1,
+    hidden_1,
     layer_counts[1],
     activation = tf.nn.relu,
     bias_regularizer = regularizer,
@@ -33,12 +29,8 @@ def my_model(layer_counts, inputs):
     kernel_initializer = initializer,
     name = 'hidden_2')
     
-  dropout_2 = tf.nn.dropout(
-    hidden_2,
-    0.90)
-
   hidden_3 = tf.layers.dense(
-    dropout_2,
+    hidden_2,
     layer_counts[2],
     activation = tf.nn.relu,
     bias_regularizer = regularizer,
@@ -46,10 +38,14 @@ def my_model(layer_counts, inputs):
     kernel_initializer = initializer,
     name = 'hidden_3')
     
-  output_layer = tf.layers.dense(
+  dropout_1 = tf.nn.dropout(
     hidden_3,
+    0.90)
+    
+  output_layer = tf.layers.dense(
+    dropout_1,
     10,
     kernel_initializer = initializer,
     name = 'output_layer')
     
-  return dropout
+  return output_layer
