@@ -37,11 +37,11 @@ def my_model(layer_counts, inputs):
     kernel_regularizer = regularizer,
     kernel_initializer = initializer,
     name = 'hidden_3')
-
-  output = tf.layers.dense(
+    
+  dropout = tf.nn.dropout(
     hidden_3,
-    10,
-    kernel_initializer = initializer,
-    name = 'output')
+    0.75)
+    
 
-  return output
+
+  return dropout
